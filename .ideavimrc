@@ -2,6 +2,8 @@
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
+set NERDTree
+
 """ The Leader Key
 let mapleader=" "
 """ Distraction Free Mode
@@ -18,8 +20,8 @@ sethandler <c-j> a:vim
 sethandler <c-k> a:vim
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>t
-nnoremap <c-k> <c-w>k
+nnoremap <c-j> <c-d>
+nnoremap <c-k> <c-u>
 nnoremap <TAB> :action PreviousTab<CR>
 nnoremap <s-TAB> :action NextTab<CR>
 nnoremap <Leader>en :action EditSourceInNewWindow<CR>
@@ -44,17 +46,18 @@ nnoremap <leader>p  :action ReformatCode<CR>
 nnoremap <c-=> :action Unsplit<CR>
 nnoremap <leader>sm :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap ,r :action ShowPopupMenu<CR>
 nnoremap <leader>l :action RecentLocations<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 "" "nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-surround'
 set incsearch
 nnoremap <c-/> :action FindInPath<CR>
 nnoremap <c-a> :action GotoAction<CR>
 nnoremap <c-f> :action GotoFile<CR>
-nnoremap <leader>sw :action EditorToggleUseSoftWraps<CR>
+nnoremap <leader>sw :action SurroundWith<CR>
 
 "nnoremap <leader>s :action GotoRelated<CR>
 "nnoremap <leader>h :action CallHierarchy<CR>
@@ -74,21 +77,17 @@ nnoremap gf :action Forward<CR>
 nnoremap <c-p> :action JumpToLastWindow<CR>
 nnoremap <c-x> :action HideAllWindows<CR>
 """ Running and Debugging
-" nnoremap ,r :action ContextRun<CR>
-nnoremap ,c :action RunClass<CR>
-nnoremap ,f :action ChooseRunConfiguration<CR>
-nnoremap ,t :action ActivateRunToolWindow<CR>
-nnoremap <leader>r :action Rerun<CR>
-nnoremap ,f :action RerunFailedTests<CR>
-nnoremap <leader>b :action ToggleLineBreakpoint<CR>
 nnoremap ,d :action ContextDebug<CR>
+nnoremap ,r :action ChooseRunConfiguration<CR>
+nnoremap <leader>r :action Rerun<CR>
+nnoremap ,b :action ToggleLineBreakpoint<CR>
 nnoremap ,n :action ActivateDebugToolWindow<CR>
 
 " Press `f` to activate AceJump
 map f <Action>(AceAction)
 " Press `F` to activate Target Mode
-map F <Action>(AceTargetAction)
+"map F <Action>(AceTargetAction)
 " Press `g` to activate Line Mode
-map g <Action>(AceLineAction)
+"map g <Action>(AceLineAction)
 
 
