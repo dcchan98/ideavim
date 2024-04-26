@@ -2,16 +2,24 @@
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
+set clipboard+=unnamed
+set clipboard+=ideaput
 set NERDTree
+set ideajoin
+set idearefactormode=keep """ Stay in same mode when going into refactor
+
 
 """ The Leader Key
 let mapleader=" "
 """ Distraction Free Mode
-nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
-""" Terminal
-nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>tc :action SmartTypeCompletion<CR>
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR> """ zen mode
+""" Terminal and explorer
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+nnoremap <leader>d :action ActivateDebugToolWindow<CR>
+nnoremap <leader>x :action HideAllWindows<CR>
 """ Navigation
+nnoremap <leader>sm :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <leader>sv :action SplitVertically<CR>
 nnoremap <leader>h :action SplitHorizontally<CR>
 nnoremap <leader>v :action MoveTabRight<CR>
@@ -22,17 +30,9 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-d>
 nnoremap <c-k> <c-u>
-nnoremap <TAB> :action PreviousTab<CR>
-nnoremap <s-TAB> :action NextTab<CR>
-nnoremap <Leader>en :action EditSourceInNewWindow<CR>
-nnoremap <Leader>n :action NextWindow<CR>
-nnoremap <Leader>q :action CloseContent<CR>
-nnoremap <Leader>qa :action CloseAllEditors<CR>
 
 
 """ Editing source code
-set ideajoin
-set idearefactormode=keep
 vnoremap < <gv
 vnoremap > >gv
 nnoremap [[ :action MethodUp<CR>
@@ -44,11 +44,19 @@ nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <leader>ca :action ShowIntentionActions<CR>
 nnoremap <leader>p  :action ReformatCode<CR>
 nnoremap <c-=> :action Unsplit<CR>
-nnoremap <leader>sm :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
 nnoremap <leader>l :action RecentLocations<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gu :action FindUsages<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gh :action QuickJavaDoc<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
 "" "nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
 Plug 'machakann/vim-highlightedyank'
@@ -59,35 +67,27 @@ nnoremap <c-a> :action GotoAction<CR>
 nnoremap <c-f> :action GotoFile<CR>
 nnoremap <leader>sw :action SurroundWith<CR>
 
-"nnoremap <leader>s :action GotoRelated<CR>
-"nnoremap <leader>h :action CallHierarchy<CR>
-"nnoremap <leader>b :action ShowNavBar<CR>
-nnoremap <c-s> :action FileStructurePopup<CR>
-nnoremap <c-o> :action GotoSymbol<CR>
-nnoremap gc :action GotoClass<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gu :action FindUsages<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gh :action QuickJavaDoc<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gt :action GotoTest<CR>
-nnoremap gb :action Back<CR>
-nnoremap gf :action Forward<CR>
 """ Tool windows
-nnoremap <c-p> :action JumpToLastWindow<CR>
-nnoremap <c-x> :action HideAllWindows<CR>
 """ Running and Debugging
 nnoremap ,d :action ContextDebug<CR>
 nnoremap ,r :action ChooseRunConfiguration<CR>
 nnoremap <leader>r :action Rerun<CR>
 nnoremap ,b :action ToggleLineBreakpoint<CR>
-nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+nnoremap ,, :action StepOver<CR>
+nnoremap ,j :action StepInto<CR>
+nnoremap ,k :action StepOut<CR>
+nnoremap ,l :action Resume<CR>
 
 " Press `f` to activate AceJump
 map f <Action>(AceAction)
 " Press `F` to activate Target Mode
 "map F <Action>(AceTargetAction)
 " Press `g` to activate Line Mode
-"map g <Action>(AceLineAction)
+"map g <ActiStepOveron>(AceLineAction)
 
+""" Archived
 
+"nnoremap <leader>s :action GotoRelated<CR>
+"nnoremap <leader>h :action CallHierarchy<CR>
+"nnoremap <leader>b :action ShowNavBar<CR>
