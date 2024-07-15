@@ -18,7 +18,7 @@ nnoremap <leader>d :action ActivateDebugToolWindow<CR>
 nnoremap <leader>g :action ActivateCommitToolWindow<CR>
 nnoremap <leader>x :action HideAllWindows<CR>
 """ Navigation
-nnoremap <leader>sm :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <leader>ss :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <leader>sv :action SplitVertically<CR>
 nnoremap <leader>h :action SplitHorizontally<CR>
 nnoremap <leader>v :action MoveTabRight<CR>
