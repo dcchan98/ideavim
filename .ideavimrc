@@ -2,21 +2,20 @@
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
-set clipboard+=unnamed
-set clipboard+=ideaput
+""" set clipboard+=unnamed
+""" set clipboard+=ideaput
 set NERDTree
 set ideajoin
 set idearefactormode=keep """ Stay in same mode when going into refactor
-
+""" set number relativenumber
 
 """ The Leader Key
 let mapleader=" "
-""" Distraction Free Mode
-nnoremap <c-z> :action ToggleDistractionFreeMode<CR> """ zen mode
-""" Terminal and explorer
+""" windows management 
 nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>e :action ActivateProjectToolWindow<CR>
 nnoremap <leader>d :action ActivateDebugToolWindow<CR>
+nnoremap <leader>g :action ActivateCommitToolWindow<CR>
 nnoremap <leader>x :action HideAllWindows<CR>
 """ Navigation
 nnoremap <leader>sm :action MoveEditorToOppositeTabGroup<CR>
@@ -39,6 +38,7 @@ nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 nnoremap zc :action CollapseRegion<CR>
 nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>me :action MaximizeEditorInSplit<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
 nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <leader>ca :action ShowIntentionActions<CR>
@@ -54,7 +54,7 @@ nnoremap gu :action FindUsages<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gh :action QuickJavaDoc<CR>
 nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gt :action GotoTest<CR>
+nnoremap gt :action GotoTypeDeclaration<CR>
 nnoremap gb :action Back<CR>
 nnoremap gf :action Forward<CR>
 "" "nnoremap <leader>s :write<CR>
