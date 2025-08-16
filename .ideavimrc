@@ -23,12 +23,15 @@ nnoremap <leader>sv :action SplitVertically<CR>
 nnoremap <leader>h :action SplitHorizontally<CR>
 nnoremap <leader>v :action MoveTabRight<CR>
 
+nmap <C-j> }
+nmap <C-k> {
+vmap <C-j> }
+vmap <C-k> {
+
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-d>
-nnoremap <c-k> <c-u>
 
 
 """ Editing source code
@@ -80,7 +83,7 @@ nnoremap ,k :action StepOut<CR>
 nnoremap ,l :action Resume<CR>
 
 " Press `f` to activate AceJump
-map f <Action>(AceAction)
+" map f <Action>(AceAction)
 " Press `F` to activate Target Mode
 "map F <Action>(AceTargetAction)
 " Press `g` to activate Line Mode
