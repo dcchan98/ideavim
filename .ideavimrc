@@ -18,20 +18,25 @@ nnoremap <leader>d :action ActivateDebugToolWindow<CR>
 nnoremap <leader>g :action ActivateCommitToolWindow<CR>
 nnoremap <leader>x :action HideAllWindows<CR>
 """ Navigation
-nnoremap <leader>ss :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <leader>sv :action SplitVertically<CR>
 nnoremap <leader>h :action SplitHorizontally<CR>
 nnoremap <leader>v :action MoveTabRight<CR>
 """ Bookmark
 nmap <leader>mm :action ToggleBookmark<CR>
 nmap <leader>ml :action ShowBookmarks<CR>
+""" Use f to jump , enter, shift enter to move between searches
+nmap f /
+set ignorecase
+nnoremap <silent> <CR> n
+nnoremap <silent> <S-CR> N
+" Move 10 lines down/up with caps jk  
+nnoremap J 20j
+nnoremap K 20k
+vnoremap J 20j
+vnoremap K 20k
 
-sethandler <c-j> a:vim
-sethandler <c-k> a:vim
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-d>
-nnoremap <c-k> <c-u>
 
 
 """ Editing source code
@@ -81,13 +86,6 @@ nnoremap ,, :action StepOver<CR>
 nnoremap ,j :action StepInto<CR>
 nnoremap ,k :action StepOut<CR>
 nnoremap ,l :action Resume<CR>
-
-" Press `f` to activate AceJump
-map f <Action>(AceAction)
-" Press `F` to activate Target Mode
-"map F <Action>(AceTargetAction)
-" Press `g` to activate Line Mode
-"map g <ActiStepOveron>(AceLineAction)
 
 """ Archived
 
