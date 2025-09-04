@@ -17,7 +17,7 @@ nnoremap <leader>e :action ActivateProjectToolWindow<CR>
 nnoremap <leader>d :action ActivateDebugToolWindow<CR>
 nnoremap <leader>g :action ActivateCommitToolWindow<CR>
 nnoremap <leader>x :action HideAllWindows<CR>
-""" Navigation
+""" Split windows and navigation
 nnoremap <leader>sv :action SplitVertically<CR>
 nnoremap <leader>h :action SplitHorizontally<CR>
 nnoremap <leader>v :action MoveTabRight<CR>
@@ -26,17 +26,18 @@ nmap <leader>mm :action ToggleBookmark<CR>
 nmap <leader>ml :action ShowBookmarks<CR>
 """ Use f to jump , enter, shift enter to move between searches
 nmap f /
+nmap F ?
 set ignorecase
 nnoremap <silent> <CR> n
 nnoremap <silent> <S-CR> N
-" Move 10 lines down/up with caps jk  
+" Move 10 lines down/up with caps jk
 nnoremap J 20j
 nnoremap K 20k
 vnoremap J 20j
 vnoremap K 20k
 
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <Space>h <C-w>h
+nnoremap <Space>l <C-w>l
 
 
 """ Editing source code
@@ -53,7 +54,6 @@ nnoremap <leader>ca :action ShowIntentionActions<CR>
 nnoremap <leader>p  :action ReformatCode<CR>
 nnoremap <c-=> :action Unsplit<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap <leader>l :action RecentLocations<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 nnoremap gc :action GotoClass<CR>
