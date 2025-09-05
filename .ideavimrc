@@ -1,94 +1,160 @@
-""" iEditing and Reloading the Config
-nnoremap \e :e ~/.ideavimrc<CR>
-nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
-
-""" set clipboard+=unnamed
-""" set clipboard+=ideaput
-set NERDTree
-set ideajoin
-set idearefactormode=keep """ Stay in same mode when going into refactor
-""" set number relativenumber
-
-""" The Leader Key
-let mapleader=" "
-""" windows management 
-nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>e :action ActivateProjectToolWindow<CR>
-nnoremap <leader>d :action ActivateDebugToolWindow<CR>
-nnoremap <leader>g :action ActivateCommitToolWindow<CR>
-nnoremap <leader>x :action HideAllWindows<CR>
-""" Split windows and navigation
-nnoremap <leader>sv :action SplitVertically<CR>
-nnoremap <leader>h :action SplitHorizontally<CR>
-nnoremap <leader>v :action MoveTabRight<CR>
-""" Bookmark
-nmap <leader>mm :action ToggleBookmark<CR>
-nmap <leader>ml :action ShowBookmarks<CR>
-""" Use f to jump , enter, shift enter to move between searches
-nmap f /
-nmap F ?
-set ignorecase
-nnoremap <silent> <CR> n
-nnoremap <silent> <S-CR> N
-" Move 10 lines down/up with caps jk
-nnoremap J 20j
-nnoremap K 20k
-vnoremap J 20j
-vnoremap K 20k
-
-nnoremap <Space>h <C-w>h
-nnoremap <Space>l <C-w>l
-
-
-""" Editing source code
-vnoremap < <gv
-vnoremap > >gv
-nnoremap [[ :action MethodUp<CR>
-nnoremap ]] :action MethodDown<CR>
-nnoremap zc :action CollapseRegion<CR>
-nnoremap zo :action ExpandRegion<CR>
-nnoremap <leader>me :action MaximizeEditorInSplit<CR>
-nnoremap <leader>zc :action CollapseAllRegions<CR>
-nnoremap <leader>zo :action ExpandAllRegions<CR>
-nnoremap <leader>ca :action ShowIntentionActions<CR>
-nnoremap <leader>p  :action ReformatCode<CR>
-nnoremap <c-=> :action Unsplit<CR>
-nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap ge :action GotoNextError<CR>
-nnoremap gE :action GotoPreviousError<CR>
-nnoremap gc :action GotoClass<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gu :action FindUsages<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gh :action QuickJavaDoc<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gt :action GotoTypeDeclaration<CR>
-nnoremap gb :action Back<CR>
-nnoremap gf :action Forward<CR>
-"" "nnoremap <leader>s :write<CR>
-""" Searching and Source Code Navigation
-Plug 'machakann/vim-highlightedyank'
-Plug 'tpope/vim-surround'
-set incsearch
-nnoremap <c-/> :action FindInPath<CR>
-nnoremap <c-a> :action GotoAction<CR>
-nnoremap <c-f> :action GotoFile<CR>
-nnoremap <leader>sw :action SurroundWith<CR>
-
-""" Tool windows
-""" Running and Debugging
-nnoremap ,d :action ContextDebug<CR>
-nnoremap ,r :action ChooseRunConfiguration<CR>
-nnoremap <leader>r :action Rerun<CR>
-nnoremap ,b :action ToggleLineBreakpoint<CR>
-
-nnoremap ,, :action StepOver<CR>
-nnoremap ,j :action StepInto<CR>
-nnoremap ,k :action StepOut<CR>
-nnoremap ,l :action Resume<CR>
-
-""" Archived
-
-"nnoremap <leader>s :action GotoRelated<CR>
-"nnoremap <leader>h :action CallHierarchy<CR>
-"nnoremap <leader>b :action ShowNavBar<CR>
+function! SetupGlobalConfigs()
+    " Keep same mode when going into refactor
+    set idearefactormode=keep
+    " Set leader key
+    let mapleader=" "
+    " Make leader key wait indefinitely until next key
+    set notimeout
+    set ttimeout
+    set ttimeoutlen=10
+    " Optional configs
+    " set number relativenumber
+    Plug 'machakann/vim-highlightedyank'
+endfunction
+call SetupGlobalConfigs()
+" =========================
+" Window Management [c]
+" =========================
+function! SetupWindowMappings()
+    nnoremap <leader><leader>t :action ActivateTerminalToolWindow<CR>
+    nnoremap <leader><leader>l :action ActivateTODOToolWindow<CR>
+    nnoremap <leader><leader>e :action ActivateProjectToolWindow<CR>
+    nnoremap <leader><leader>d :action ActivateDebugToolWindow<CR>
+    nnoremap <leader><leader>g :action ActivateCommitToolWindow<CR>
+    nnoremap <leader><leader>x :action HideAllWindows<CR>
+endfunction
+call SetupWindowMappings()
+" =========================
+" Split Management
+" =========================
+function! SetupSplitMappings()
+    nnoremap <leader>sv :action SplitVertically<CR>
+    nnoremap <leader>sh :action SplitHorizontally<CR>
+    nnoremap <leader>smv :action MoveTabRight<CR>
+    nnoremap <leader>smh :action MoveTabDown<CR>
+    nnoremap <leader>sog :action MoveEditorToOppositeTabGroup<CR>
+    " Split Size change
+    nnoremap <leader>ss :action MaximizeEditorInSplit<CR>
+endfunction
+call SetupSplitMappings()
+" =========================
+" JK for 20 up and down , space hjkl to move between windows
+" =========================
+function! SetupHJKLNavigation()
+    " Move 20 lines down/up in normal mode
+    nnoremap J 20j
+    nnoremap K 20k
+    vnoremap J 20j
+    vnoremap K 20k
+    " Split navigation using Space + h/l
+    nnoremap <Space>h <C-w>h
+    nnoremap <Space>j <C-w>j
+    nnoremap <Space>k <C-w>k
+    nnoremap <Space>l <C-w>l
+endfunction
+call SetupHJKLNavigation()
+" =========================
+" Bookmark Management
+" =========================
+function! SetupBookmarkMappings()
+    nmap <leader>mm :action ToggleBookmark<CR>
+    nmap <leader>ml :action ShowBookmarks<CR>
+    nmap <leader>mf :action GotoNextBookmark<CR>
+    nmap <leader>mb :action GotoPreviousBookmark<CR>
+endfunction
+call SetupBookmarkMappings()
+" =========================
+" Search and Navigation
+" =========================
+function! SetupSearchNavigation()
+    " case insensitive for searches
+    set ignorecase
+    " Use f/F as quick search keys
+    nmap f /
+    nmap F ?
+    " Enter → next match, Shift+Enter → previous match
+    nnoremap <silent> <CR> n
+    nnoremap <silent> <S-CR> N
+    set incsearch
+endfunction
+call SetupSearchNavigation()
+" =========================
+" Code Navigation Mappings
+" =========================
+function! SetupGoToNavigation()
+    nnoremap gd :action GotoDeclaration<CR>
+    nnoremap gi :action GotoImplementation<CR>
+    nnoremap ge :action GotoNextError<CR>
+    nnoremap gE :action GotoPreviousError<CR>
+    nnoremap gu :action FindUsages<CR>
+    nnoremap gh :action QuickJavaDoc<CR>
+    nnoremap gs :action GotoSuperMethod<CR>
+    nnoremap gt :action GotoTypeDeclaration<CR>
+    nnoremap gb :action Back<CR>
+    nnoremap gf :action Forward<CR>
+endfunction
+call SetupGoToNavigation()
+" =========================
+" Find Navigation
+" =========================
+function! SetupFindNavigation()
+    nnoremap <leader>ff :action! GotoFile<CR>
+    nnoremap <leader>fg :action! FindInPath<CR>
+    nnoremap <leader>fc :action! GoToClass<CR>
+    nnoremap <leader>fs :action! GotoSymbol<CR>
+    nnoremap <leader>fa :action! GotoAction<CR>
+endfunction
+call SetupFindNavigation()
+" =========================
+" Region Collapse / Expand
+" =========================
+function! SetupCollapseMappings()
+    " Collapse / Expand regions
+    nnoremap zc :action CollapseRegion<CR>
+    nnoremap zo :action ExpandRegion<CR>
+    " Collapse/expand all regions
+    nnoremap <leader>zc :action CollapseAllRegions<CR>
+    nnoremap <leader>zo :action ExpandAllRegions<CR>
+    """ rerun
+endfunction
+call SetupCollapseMappings()
+""" Running /Debugging
+" =========================
+" Run & Debug Mappings
+" =========================
+function! SetupRunDebugMappings()
+    " Rerun last configuration
+    nnoremap <leader>rr :action Rerun<CR>
+    " Choose run configuration
+    nnoremap <leader>rc :action ChooseRunConfiguration<CR>
+    " Toggle line breakpoint
+    nnoremap <leader>rb :action ToggleLineBreakpoint<CR>
+    " Step over
+    nnoremap <leader>ro :action StepOver<CR>
+    " Step into
+    nnoremap <leader>ri :action StepInto<CR>
+    " Step out
+    nnoremap <leader>ru :action StepOut<CR>
+    " Continue
+    nnoremap <leader>rc :action Resume<CR>
+endfunction
+call SetupRunDebugMappings()
+" =========================
+" Misc
+" =========================
+function! SetUpMisc()
+    vnoremap < <gv
+    vnoremap > >gv
+    """ vscode - [code action,code prettier]
+    nnoremap <leader>ca :action ShowIntentionActions<CR>
+    nnoremap <leader>cp :action ReformatCode<CR>
+endfunction
+call SetUpMisc()
+""=========================
+ " IdeaVim Config Management
+ " =========================
+ function! SetupIdeaVimConfigMappings()
+     nnoremap <leader><leader><leader><leader>i :e ~/.ideavimrc<CR>
+     nnoremap <leader><leader><leader><leader>r :action IdeaVim.ReloadVimRc.reload<CR>
+ endfunction
+ call SetupIdeaVimConfigMappings()
