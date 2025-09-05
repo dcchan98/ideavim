@@ -1,17 +1,7 @@
-function! SetupGlobalConfigs()
-    " Keep same mode when going into refactor
-    set idearefactormode=keep
-    " Set leader key
-    let mapleader=" "
-    " Make leader key wait indefinitely until next key
-    set notimeout
-    set ttimeout
-    set ttimeoutlen=10
-    " Optional configs
-    " set number relativenumber
-    Plug 'machakann/vim-highlightedyank'
-endfunction
-call SetupGlobalConfigs()
+Plug 'machakann/vim-highlightedyank'
+
+let mapleader=" "
+set idearefactormode=keep
 " =========================
 " Window Management [c]
 " =========================
