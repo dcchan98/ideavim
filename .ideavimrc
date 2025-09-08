@@ -2,6 +2,8 @@ Plug 'machakann/vim-highlightedyank'
 
 let mapleader=" "
 set idearefactormode=keep
+set ignorecase
+set smartcase
 " =========================
 " Window Management [c]
 " =========================
@@ -16,7 +18,7 @@ endfunction
 call SetupWindowMappings()
 " =========================
 " Split Management
- ========================
+" =========================
 function! SetupSplitMappings()
     nnoremap <leader>sv :action SplitVertically<CR>
     nnoremap <leader>sh :action SplitHorizontally<CR>
@@ -58,7 +60,6 @@ call SetupBookmarkMappings()
 " =========================
 function! SetupSearchNavigation()
     " case insensitive for searches
-    set ignorecase
     " Use f/F as quick search keys
     nmap f /
     nmap F ?
@@ -67,7 +68,7 @@ function! SetupSearchNavigation()
     nnoremap <silent> <S-CR> N
     set incsearch
 endfunction
-call SetupSearchNavigation()
+" call SetupSearchNavigation()
 " =========================
 " Code Navigation Mappings
 " =========================
@@ -93,10 +94,8 @@ function! SetupFindNavigation()
     nnoremap <leader>fc :action! GoToClass<CR>
     nnoremap <leader>fs :action! GotoSymbol<CR>
     nnoremap <leader>fa :action! GotoAction<CR>
-    nnoremap <leader>fr :action! RecentFiles<CR>
-    nnoremap <leader>fl :action! RecentLocations<CR>
 endfunction
-call SetupFindNavigation()
+" call SetupFindNavigation()
 " =========================
 " Region Collapse / Expand
 " =========================
